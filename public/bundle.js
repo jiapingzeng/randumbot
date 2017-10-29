@@ -21274,6 +21274,10 @@ var _reactAddonsCssTransitionGroup = __webpack_require__(35);
 
 var _reactAddonsCssTransitionGroup2 = _interopRequireDefault(_reactAddonsCssTransitionGroup);
 
+var _coin = __webpack_require__(47);
+
+var _coin2 = _interopRequireDefault(_coin);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21288,17 +21292,65 @@ var App = function (_React$Component) {
     function App() {
         _classCallCheck(this, App);
 
-        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
+
+        _this.state = {
+            history: []
+        };
+        return _this;
     }
 
     _createClass(App, [{
+        key: 'handleClick',
+        value: function handleClick() {
+            //window.alert('button clicked ${window.location.hostname}')
+        }
+    }, {
+        key: 'recordResult',
+        value: function recordResult(r) {
+            this.setState({
+                history: this.state.history.concat([r])
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var history = this.state.history;
+            var sides = history.map(function (side, i) {
+                var text = void 0;
+                switch (side) {
+                    case 0:
+                        text = 'Heads';
+                        break;
+                    case 1:
+                        text = 'Tails';
+                        break;
+                    case 2:
+                        text = 'Edge';
+                        break;
+                }
+                return _react2.default.createElement(
+                    'li',
+                    { key: i },
+                    text
+                );
+            });
             var page = void 0;
+            // need to figure out how to include history in tiny UI
             page = _react2.default.createElement(
-                'h1',
+                'section',
                 null,
-                'test'
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    'Tap on coin'
+                ),
+                _react2.default.createElement(_coin2.default, { heads: 0.49, tails: 0.49, recordResult: function recordResult(r) {
+                        return _this2.recordResult(r);
+                    } }),
+                _react2.default.createElement('ol', null)
             );
             return _react2.default.createElement(
                 'div',
@@ -22366,6 +22418,124 @@ function getTransitionProperties() {
 
   return { animationEnd: animationEnd, transitionEnd: transitionEnd, prefix: prefix };
 }
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Coin = function (_React$Component) {
+    _inherits(Coin, _React$Component);
+
+    function Coin(props) {
+        _classCallCheck(this, Coin);
+
+        var _this = _possibleConstructorReturn(this, (Coin.__proto__ || Object.getPrototypeOf(Coin)).call(this, props));
+
+        _this.state = {
+            side: 0 // 0: heads, 1: tails, 2: edge
+        };
+        return _this;
+    }
+
+    _createClass(Coin, [{
+        key: "handleClick",
+        value: function handleClick() {
+            this.flipCoin(this.props.heads, this.props.tails);
+        }
+
+        // chances of heads and tails (should add up to 1)
+        // 1-(h+t) is the chance of the coin landing on its edge
+
+    }, {
+        key: "flipCoin",
+        value: function flipCoin(h, t) {
+            var r = Math.random();
+            if (r < h) {
+                // heads
+                this.setState({ side: 0 });
+            } else if (r < h + t) {
+                // tails
+                this.setState({ side: 1 });
+            } else {
+                // edge
+                this.setState({ side: 2 });
+            }
+            this.props.recordResult(this.state.side);
+        }
+    }, {
+        key: "render",
+        value: function render() {
+            var _this2 = this;
+
+            var side = this.state.side;
+            var text = void 0,
+                coin = void 0;
+            if (this.state.side == 0) {
+                text = "Heads";
+                coin = _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement("img", { src: "/coin/front.png" })
+                );
+            } else if (this.state.side == 1) {
+                text = "Tails";
+                coin = _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement("img", { src: "/coin/back.png" })
+                );
+            } else {
+                text = "Edge";
+                coin = _react2.default.createElement(
+                    "div",
+                    null,
+                    _react2.default.createElement("img", { src: "/coin/edge.png" })
+                );
+            }
+            return _react2.default.createElement(
+                "div",
+                null,
+                _react2.default.createElement(
+                    "h1",
+                    null,
+                    text
+                ),
+                _react2.default.createElement(
+                    "div",
+                    { onClick: function onClick() {
+                            return _this2.handleClick();
+                        } },
+                    coin
+                )
+            );
+        }
+    }]);
+
+    return Coin;
+}(_react2.default.Component);
+
+exports.default = Coin;
 
 /***/ })
 /******/ ]);
