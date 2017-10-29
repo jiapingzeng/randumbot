@@ -33,7 +33,8 @@ const messageToJson = (recipientId, messagePayload) => {
 }
 
 const sendMessage = (recipientId, messagePayloads) => {
-    const messagePayloadArray = castArray(messagePayloads).map((messagePayload) => messageToJson(recipientId, messagePayload))
+    const messagePayloadArray = castArray(messagePayloads)
+        .map((messagePayload) => messageToJson(recipientId, messagePayload))
     api.callMessagesAPI([
         typingOn(recipientId),
         ...messagePayloadArray,

@@ -4,10 +4,12 @@ const handleReceivePostback = (event) => {
     const type = event.postback.payload
     const senderId = event.sender.id
 
-    if (type === 'help') {
-        sendApi.sendMessage(senderId, 'Idk')
+    if (type === 'get_started') {
+        sendApi.sendWelcomeMessage()
+    } else if (type === 'help') {
+        sendApi.sendMessage(senderId, { text: 'Idk' })
     } else {
-        sendApi.sendMessage(senderId, `Unknown postback received: ${type}`)
+        sendApi.sendMessage(senderId, { text: `Unknown postback received: ${type}` })
     }
 }
 
@@ -16,7 +18,7 @@ const handleReceiveMessage = (event) => {
     const senderId = event.sender.id
     sendApi.sendReadReceipt(senderId)
     if (message.text) {
-        sendApi.sendMessage(senderId, 'Ok')
+        sendApi.sendMessage(senderId, { text: 'Ok' })
     }
 }
 
