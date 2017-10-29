@@ -4,7 +4,7 @@ import request from 'request'
 
 const PAGE_ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN
 
-const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
+const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 3) => {
     if (!endPoint) {
         console.error('No endpoint specifed')
         return
