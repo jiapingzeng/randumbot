@@ -5,7 +5,7 @@ const handleReceivePostback = (event) => {
     const senderId = event.sender.id
 
     if (type === 'get_started') {
-        sendApi.sendWelcomeMessage()
+        sendApi.sendWelcomeMessage(senderId)
     } else if (type === 'help') {
         sendApi.sendMessage(senderId, { text: 'Idk' })
     } else {
