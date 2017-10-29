@@ -19,6 +19,7 @@ const handleReceiveMessage = (event) => {
     sendApi.sendReadReceipt(senderId)
     if (message.text) {
         sendApi.sendMessage(senderId, { text: 'Ok' })
+        sendApi.sendOpenAppMessage(senderId)
     }
 }
 

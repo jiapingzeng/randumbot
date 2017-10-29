@@ -56,4 +56,8 @@ const sendWelcomeMessage = (recipientId) => {
     sendMessage(recipientId, messages.welcomeMessage())
 }
 
-export default { sendMessage, sendReadReceipt, sendWelcomeMessage }
+const sendOpenAppMessage = (recipientId) => {
+    sendMessage(recipientId, messages.openAppMessage())
+}
+
+export default { sendMessage, sendReadReceipt, sendWelcomeMessage, sendOpenAppMessage }
