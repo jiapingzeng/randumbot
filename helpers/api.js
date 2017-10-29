@@ -16,18 +16,18 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 5) => {
     const query = Object.assign({ access_token: PAGE_ACCESS_TOKEN }, queryParams)
     const [messageToSend, ...queue] = castArray(messageDataArray)
     request({
-        uri: 'https://graph.facebook.com/v2.10/me/${endPoint}',
+        uri: `https://graph.facebook.com/v2.10/me/${endPoint}`,
         qs: query,
         method: 'POST',
         json: messageToSend
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
-            console.log('sent message to ${endPoint} endpoint: ', JSON.stringify(body))
+            console.log(`sent message to ${endPoint} endpoint: `, JSON.stringify(body))
             if (!isEmpty(queue)) {
                 callAPI(endPoint, queue, queryParams)
             }
         } else {
-            console.error('Failed calling API endpoint ${endPoint}', response.statusCode, response.statusMessage, body.error, queryParams)
+            console.error(`Failed calling API endpoint ${endPoint}`, response.statusCode, response.statusMessage, body.error, queryParams)
             callAPI(endPoint, messageDataArray, queryParams, retries - 1)
         }
     })

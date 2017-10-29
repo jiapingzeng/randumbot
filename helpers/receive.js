@@ -7,7 +7,7 @@ const handleReceivePostback = (event) => {
     if (type === 'help') {
         sendApi.sendMessage(senderId, 'Idk')
     } else {
-        sendApi.sendMessage(senderId, 'Unknown postback received: ${type}')
+        sendApi.sendMessage(senderId, `Unknown postback received: ${type}`)
     }
 }
 

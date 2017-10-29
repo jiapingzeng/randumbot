@@ -1123,7 +1123,7 @@ var _app2 = _interopRequireDefault(_app);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.attachApp = function (viewerId, threadType) {
-    var apiUri = 'https://${window.location.hostname}';
+    var apiUri = 'https://' + window.location.hostname;
     var app = void 0;
     if (viewerId) {
         app = _react2.default.createElement(_app2.default, {
@@ -1131,6 +1131,12 @@ window.attachApp = function (viewerId, threadType) {
             apiUri: apiUri,
             threadType: threadType
         });
+    } else {
+        app = _react2.default.createElement(
+            'h1',
+            null,
+            'Unsupported client'
+        );
     }
     _reactDom2.default.render(app, document.getElementById('content'));
 };
@@ -21303,7 +21309,7 @@ var App = function (_React$Component) {
     _createClass(App, [{
         key: 'handleClick',
         value: function handleClick() {
-            //window.alert('button clicked ${window.location.hostname}')
+            //window.alert(`button clicked ${window.location.hostname}`)
         }
     }, {
         key: 'recordResult',

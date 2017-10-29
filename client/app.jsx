@@ -12,7 +12,7 @@ export default class App extends React.Component {
     }
 
     handleClick() {
-        //window.alert('button clicked ${window.location.hostname}')
+        //window.alert(`button clicked ${window.location.hostname}`)
     }
 
     recordResult(r) {
