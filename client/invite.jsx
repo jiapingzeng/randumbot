@@ -4,7 +4,7 @@ import messages from '../helpers/messages'
 
 const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
     const shareCoin = () => {
-        console.log(messages.shareMessage(apiUri, title)
+        console.log(messages.shareMessage(apiUri, title))
         window.MessengerExtensions.beginShareFlow(
             function success(response) {
                 if (response.is_sent) {
