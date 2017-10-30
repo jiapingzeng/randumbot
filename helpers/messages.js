@@ -48,7 +48,7 @@ const openAppMessage = () => {
     }
 }
 
-const shareMessage = (apiUri, title, imgSource, buttonText) => {
+const shareMessage = (apiUri, title, imgSource) => {
     return {
         attachment: {
             type: 'template',

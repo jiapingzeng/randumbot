@@ -22607,7 +22607,7 @@ var Invite = function Invite(_ref) {
         imgSource = _ref$imgSource === undefined ? 'randumbot.png' : _ref$imgSource;
 
     var shareCoin = function shareCoin() {
-        window.MessengerExtentions.beginShareFlow(function success(response) {
+        window.MessengerExtensions.beginShareFlow(function success(response) {
             if (response.is_sent) {
                 window.MessengerExtensions.requestCloseBrowser(null, null);
             }
@@ -22691,7 +22691,7 @@ var openAppMessage = function openAppMessage() {
     };
 };
 
-var shareMessage = function shareMessage(apiUri, title, imgSource, buttonText) {
+var shareMessage = function shareMessage(apiUri, title, imgSource) {
     return {
         attachment: {
             type: 'template',

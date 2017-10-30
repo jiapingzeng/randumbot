@@ -4,7 +4,7 @@ import messages from '../helpers/messages'
 
 const Invite = ({ title, apiUri, sharingMode, buttonText, imgSource = 'randumbot.png' }) => {
     const shareCoin = () => {
-        window.MessengerExtentions.beginShareFlow(
+        window.MessengerExtensions.beginShareFlow(
             function success(response) {
                 if (response.is_sent) {
                     window.MessengerExtensions.requestCloseBrowser(null, null)
