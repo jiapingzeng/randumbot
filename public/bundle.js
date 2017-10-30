@@ -21284,6 +21284,10 @@ var _coin = __webpack_require__(47);
 
 var _coin2 = _interopRequireDefault(_coin);
 
+var _invite = __webpack_require__(48);
+
+var _invite2 = _interopRequireDefault(_invite);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21319,30 +21323,51 @@ var App = function (_React$Component) {
             });
         }
     }, {
+        key: 'sideToText',
+        value: function sideToText(s) {
+            switch (side) {
+                case 0:
+                    return 'Heads';
+                case 1:
+                    return 'Tails';
+                case 2:
+                    return 'Edge';
+            }
+        }
+    }, {
         key: 'render',
         value: function render() {
             var _this2 = this;
 
+            // generate page
             var history = this.state.history;
+            var current = history[history.length - 1];
             var sides = history.map(function (side, i) {
-                var text = void 0;
-                switch (side) {
-                    case 0:
-                        text = 'Heads';
-                        break;
-                    case 1:
-                        text = 'Tails';
-                        break;
-                    case 2:
-                        text = 'Edge';
-                        break;
-                }
                 return _react2.default.createElement(
                     'li',
                     { key: i },
-                    text
+                    _this2.sideToText(side)
                 );
             });
+
+            // invite button
+            var invite = void 0,
+                sharingMode = void 0,
+                buttonText = void 0;
+            if (threadType === 'USER_TO_PAGE') {
+                sharingMode = 'broadcast';
+                buttonText = 'Invite your friends to this list';
+            } else {
+                sharingMode = 'current_thread';
+                buttonText = 'Send to conversation';
+            }
+            invite = _react2.default.createElement(_invite2.default, {
+                title: this.sideToText(current) + '!',
+                apiUri: apiUri,
+                sharingMode: sharingMode,
+                buttonText: buttonText
+            });
+
             var page = void 0;
             // need to figure out how to include history in tiny UI
             page = _react2.default.createElement(
@@ -21356,7 +21381,8 @@ var App = function (_React$Component) {
                 _react2.default.createElement(_coin2.default, { heads: 0.49, tails: 0.49, recordResult: function recordResult(r) {
                         return _this2.recordResult(r);
                     } }),
-                _react2.default.createElement('ol', null)
+                _react2.default.createElement('ol', null),
+                invite
             );
             return _react2.default.createElement(
                 'div',
@@ -22502,21 +22528,21 @@ var Coin = function (_React$Component) {
                 coin = _react2.default.createElement(
                     "div",
                     null,
-                    _react2.default.createElement("img", { src: "/coin/front.png" })
+                    _react2.default.createElement("img", { src: "/img/front.png" })
                 );
             } else if (this.state.side == 1) {
                 text = "Tails";
                 coin = _react2.default.createElement(
                     "div",
                     null,
-                    _react2.default.createElement("img", { src: "/coin/back.png" })
+                    _react2.default.createElement("img", { src: "/img/back.png" })
                 );
             } else {
                 text = "Edge";
                 coin = _react2.default.createElement(
                     "div",
                     null,
-                    _react2.default.createElement("img", { src: "/coin/edge.png" })
+                    _react2.default.createElement("img", { src: "/img/edge.png" })
                 );
             }
             return _react2.default.createElement(
@@ -22542,6 +22568,145 @@ var Coin = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.default = Coin;
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _messages = __webpack_require__(49);
+
+var _messages2 = _interopRequireDefault(_messages);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Invite = function Invite(_ref) {
+    var title = _ref.title,
+        apiUri = _ref.apiUri,
+        sharingMode = _ref.sharingMode,
+        buttonText = _ref.buttonText,
+        _ref$imgSource = _ref.imgSource,
+        imgSource = _ref$imgSource === undefined ? 'randumbot.png' : _ref$imgSource;
+
+    var share = function share() {
+        window.MessengerExtentions.beginShareFlow(function success(response) {
+            if (response.is_sent) {
+                window.MessengerExtensions.requestCloseBrowser(null, null);
+            }
+        }, function error(errorCode, errorMessage) {
+            console.error({ errorCode: errorCode, errorMessage: errorMessage });
+        }, _messages2.default.shareMessage(apiUri, title, imgSource), sharingMode);
+    };
+
+    return _react2.default.createElement(
+        'div',
+        { id: 'invite' },
+        _react2.default.createElement(
+            'button',
+            { onClick: share() },
+            buttonText
+        )
+    );
+};
+
+Invite.PropTypes = {
+    share: _react2.default.PropTypes.func.isRequired
+};
+
+exports.default = Invite;
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var APP_URL = process.env.APP_URL;
+
+var openAppButton = function openAppButton() {
+    var buttonText = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Okay';
+
+    return {
+        type: 'web_url',
+        title: buttonText,
+        url: APP_URL,
+        messenger_extensions: true,
+        webview_height_ratio: 'compact'
+    };
+};
+
+var helpButton = function helpButton() {
+    return {
+        type: 'postback',
+        title: 'How?',
+        payload: 'help'
+    };
+};
+
+var welcomeMessage = function welcomeMessage() {
+    return {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'button',
+                text: 'Ready to try the RandumBot chat extension?',
+                buttons: [helpButton()]
+            }
+        }
+    };
+};
+
+var openAppMessage = function openAppMessage() {
+    return {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'button',
+                text: 'Let\'s try opening the web view',
+                buttons: [openAppButton()]
+            }
+        }
+    };
+};
+
+var shareMessage = function shareMessage(apiUri, title, imgSource, buttonText) {
+    return {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: [{
+                    title: title,
+                    image_url: apiUri + '/img/' + imgSource,
+                    subtitle: '',
+                    default_action: {
+                        type: 'web_url',
+                        url: apiUri,
+                        messenger_extensions: true
+                    },
+                    buttons: [openAppButton()]
+                }]
+            }
+        }
+    };
+};
+
+exports.default = { welcomeMessage: welcomeMessage, openAppMessage: openAppMessage, shareMessage: shareMessage };
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ })
 /******/ ]);
