@@ -22602,19 +22602,17 @@ var Invite = function Invite(_ref) {
     var title = _ref.title,
         apiUri = _ref.apiUri,
         sharingMode = _ref.sharingMode,
-        buttonText = _ref.buttonText,
-        _ref$imgSource = _ref.imgSource,
-        imgSource = _ref$imgSource === undefined ? 'randumbot.png' : _ref$imgSource;
+        buttonText = _ref.buttonText;
 
     var shareCoin = function shareCoin() {
-	console.log(_messages2.default.shareMessage(apiUri, title, imgSource))
+        console.log(_messages2.default.shareMessage(apiUri, title));
         window.MessengerExtensions.beginShareFlow(function success(response) {
             if (response.is_sent) {
                 window.MessengerExtensions.requestCloseBrowser(null, null);
             }
         }, function error(errorCode, errorMessage) {
-            console.error({ errorCode: errorCode, errorMessage: errorMessage });
-        }, _messages2.default.shareMessage(apiUri, title, imgSource), sharingMode);
+            console.error('Error ' + errorCode + ': ' + errorMessage);
+        }, _messages2.default.shareMessage(apiUri, title), sharingMode);
     };
 
     return _react2.default.createElement(
@@ -22649,11 +22647,12 @@ var APP_URL = process.env.APP_URL;
 var openAppButton = function openAppButton() {
     var buttonText = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Okay';
 
+    // CHANGE THIS!!!
     return {
         type: 'web_url',
         title: buttonText,
-        url: APP_URL,
-        //messenger_extensions: true,
+        url: 'https://randumbot.herokuapp.com',
+        messenger_extensions: true,
         webview_height_ratio: 'tall'
     };
 };
@@ -22692,7 +22691,7 @@ var openAppMessage = function openAppMessage() {
     };
 };
 
-var shareMessage = function shareMessage(apiUri, title, imgSource) {
+var shareMessage = function shareMessage(apiUri, title) {
     return {
         attachment: {
             type: 'template',
@@ -22704,8 +22703,8 @@ var shareMessage = function shareMessage(apiUri, title, imgSource) {
                     subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',
-                        url: apiUri
-                        //messenger_extensions: true
+                        url: apiUri,
+                        messenger_extensions: true
                     },
                     buttons: [openAppButton()]
                 }]

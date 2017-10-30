@@ -1,11 +1,10 @@
 const APP_URL = process.env.APP_URL
 
-const openAppButton = (buttonText = 'Okay') => {
-    // CHANGE THIS!!!
+const openAppButton = (apiUri = APP_URL, buttonText = 'Okay') => {
     return {
         type: 'web_url',
         title: buttonText,
-        url: 'https://randumbot.herokuapp.com',
+        url: apiUri,
         messenger_extensions: true,
         webview_height_ratio: 'tall'
     }
@@ -63,10 +62,7 @@ const shareMessage = (apiUri, title) => {
                         type: 'web_url',
                         url: apiUri,
                         messenger_extensions: true
-                    },
-                    buttons: [
-                        openAppButton()
-                    ]
+                    }
                 }]
             }
         }
