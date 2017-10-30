@@ -22607,6 +22607,7 @@ var Invite = function Invite(_ref) {
         imgSource = _ref$imgSource === undefined ? 'randumbot.png' : _ref$imgSource;
 
     var shareCoin = function shareCoin() {
+	console.log(_messages2.default.shareMessage(apiUri, title, imgSource))
         window.MessengerExtensions.beginShareFlow(function success(response) {
             if (response.is_sent) {
                 window.MessengerExtensions.requestCloseBrowser(null, null);
