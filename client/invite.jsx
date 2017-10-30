@@ -3,7 +3,7 @@ import React from 'react'
 import messages from '../helpers/messages'
 
 const Invite = ({ title, apiUri, sharingMode, buttonText, imgSource = 'randumbot.png' }) => {
-    const share = () => {
+    const shareCoin = () => {
         window.MessengerExtentions.beginShareFlow(
             function success(response) {
                 if (response.is_sent) {
@@ -18,15 +18,15 @@ const Invite = ({ title, apiUri, sharingMode, buttonText, imgSource = 'randumbot
 
     return (
         <div id='invite'>
-            <button onClick={share()}>
+            <button onClick={shareCoin}>
                 {buttonText}
             </button>
         </div>
     )
 }
 
-Invite.PropTypes = {
-    share: React.PropTypes.func.isRequired
-}
+/*Invite.PropTypes = {
+    shareCoin: React.PropTypes.func.isRequired
+}*/
 
 export default Invite

@@ -3,7 +3,7 @@ import express from 'express'
 const router = express.Router()
 
 router.get('/', (req, res) => {
-    res.render('./index', { demo: process.env.demo })
+    res.render('./index', { demo: process.env.DEMO })
 })
 
 export default router

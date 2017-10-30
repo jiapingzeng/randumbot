@@ -21325,7 +21325,7 @@ var App = function (_React$Component) {
     }, {
         key: 'sideToText',
         value: function sideToText(s) {
-            switch (side) {
+            switch (s) {
                 case 0:
                     return 'Heads';
                 case 1:
@@ -21349,8 +21349,12 @@ var App = function (_React$Component) {
                     _this2.sideToText(side)
                 );
             });
-
             // invite button
+            var _props = this.props,
+                apiUri = _props.apiUri,
+                viewerId = _props.viewerId,
+                threadType = _props.threadType;
+
             var invite = void 0,
                 sharingMode = void 0,
                 buttonText = void 0;
@@ -21382,7 +21386,11 @@ var App = function (_React$Component) {
                         return _this2.recordResult(r);
                     } }),
                 _react2.default.createElement('ol', null),
-                invite
+                _react2.default.createElement(
+                    'div',
+                    null,
+                    invite
+                )
             );
             return _react2.default.createElement(
                 'div',
@@ -22598,7 +22606,7 @@ var Invite = function Invite(_ref) {
         _ref$imgSource = _ref.imgSource,
         imgSource = _ref$imgSource === undefined ? 'randumbot.png' : _ref$imgSource;
 
-    var share = function share() {
+    var shareCoin = function shareCoin() {
         window.MessengerExtentions.beginShareFlow(function success(response) {
             if (response.is_sent) {
                 window.MessengerExtensions.requestCloseBrowser(null, null);
@@ -22613,15 +22621,15 @@ var Invite = function Invite(_ref) {
         { id: 'invite' },
         _react2.default.createElement(
             'button',
-            { onClick: share() },
+            { onClick: shareCoin },
             buttonText
         )
     );
 };
 
-Invite.PropTypes = {
-    share: _react2.default.PropTypes.func.isRequired
-};
+/*Invite.PropTypes = {
+    shareCoin: React.PropTypes.func.isRequired
+}*/
 
 exports.default = Invite;
 

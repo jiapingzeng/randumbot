@@ -23,7 +23,7 @@ export default class App extends React.Component {
     }
 
     sideToText(s) {
-        switch (side) {
+        switch (s) {
             case 0:
                 return 'Heads'
             case 1:
@@ -42,8 +42,8 @@ export default class App extends React.Component {
                 <li key={i}>{this.sideToText(side)}</li>
             )
         })
-
         // invite button
+        const {apiUri, viewerId, threadType} = this.props
         let invite, sharingMode, buttonText
         if (threadType === 'USER_TO_PAGE') {
             sharingMode = 'broadcast';
@@ -68,7 +68,7 @@ export default class App extends React.Component {
                 <h1>Tap on coin</h1>
                 <Coin heads={0.49} tails={0.49} recordResult={(r) => this.recordResult(r)} />
                 <ol>{/* sides */}</ol>
-                {invite}
+                <div>{invite}</div>
             </section>
         )
         return (

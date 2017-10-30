@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 
 import App from "./app.jsx"
 
+
 window.attachApp = (viewerId, threadType) => {
     const apiUri = `https://${window.location.hostname}`
     let app
