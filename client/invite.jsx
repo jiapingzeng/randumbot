@@ -10,6 +10,7 @@ const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
                     window.MessengerExtensions.requestCloseBrowser(null, null)
                 }
             }, function error(errorCode, errorMessage) {
+                buttonText = errorMessage
                 console.error({ errorCode, errorMessage })
             }, messages.shareMessage(apiUri, title),
             sharingMode
