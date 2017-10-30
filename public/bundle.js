@@ -22653,7 +22653,7 @@ var openAppButton = function openAppButton() {
         title: buttonText,
         url: APP_URL,
         messenger_extensions: true,
-        webview_height_ratio: 'compact'
+        webview_height_ratio: 'tall'
     };
 };
 
@@ -22700,7 +22700,7 @@ var shareMessage = function shareMessage(apiUri, title, imgSource) {
                 elements: [{
                     title: title,
                     image_url: apiUri + '/img/' + imgSource,
-                    subtitle: '',
+                    subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,

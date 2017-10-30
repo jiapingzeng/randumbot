@@ -6,7 +6,7 @@ const openAppButton = (buttonText = 'Okay') => {
         title: buttonText,
         url: APP_URL,
         messenger_extensions: true,
-        webview_height_ratio: 'compact'
+        webview_height_ratio: 'tall'
     }
 }
 
@@ -57,7 +57,7 @@ const shareMessage = (apiUri, title, imgSource) => {
                 elements: [{
                     title: title,
                     image_url: `${apiUri}/img/${imgSource}`,
-                    subtitle: '',
+                    subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,
