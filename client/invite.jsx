@@ -2,7 +2,7 @@ import React from 'react'
 
 import messages from '../helpers/messages'
 
-const Invite = ({ title, apiUri, sharingMode, buttonText, imgSource = 'randumbot.png' }) => {
+const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
     const shareCoin = () => {
         window.MessengerExtensions.beginShareFlow(
             function success(response) {
@@ -11,7 +11,7 @@ const Invite = ({ title, apiUri, sharingMode, buttonText, imgSource = 'randumbot
                 }
             }, function error(errorCode, errorMessage) {
                 console.error({ errorCode, errorMessage })
-            }, messages.shareMessage(apiUri, title, imgSource),
+            }, messages.shareMessage(apiUri, title),
             sharingMode
         )
     }
