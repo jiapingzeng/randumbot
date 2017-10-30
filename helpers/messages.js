@@ -1,6 +1,6 @@
 const APP_URL = process.env.APP_URL
 
-const createOpenAppButton = (buttonText = 'Okay') => {
+const openAppButton = (buttonText = 'Okay') => {
     return {
         type: 'web_url',
         title: buttonText,
@@ -10,7 +10,7 @@ const createOpenAppButton = (buttonText = 'Okay') => {
     }
 }
 
-const createHelpButton = () => {
+const helpButton = () => {
     return {
         type: 'postback',
         title: 'How?',
@@ -26,7 +26,7 @@ const welcomeMessage = () => {
                 template_type: 'button',
                 text: 'Ready to try the RandumBot chat extension?',
                 buttons: [
-                    createHelpButton()
+                    helpButton()
                 ]
             }
         }
@@ -48,4 +48,28 @@ const openAppMessage = () => {
     }
 }
 
-export default { createOpenAppButton, createHelpButton, welcomeMessage, openAppMessage }
+const shareMessage = (apiUri, title, imgSource, buttonText) => {
+    return {
+        attachment: {
+            type: 'template',
+            payload: {
+                template_type: 'generic',
+                elements: [{
+                    title: title,
+                    image_url: `${apiUri}/img/${imgSource}`,
+                    subtitle: '',
+                    default_action: {
+                        type: 'web_url',
+                        url: apiUri,
+                        messenger_extensions: true
+                    },
+                    buttons: [
+                        openAppButton()
+                    ]
+                }]
+            }
+        }
+    }
+}
+
+export default { welcomeMessage, openAppMessage, shareMessage }

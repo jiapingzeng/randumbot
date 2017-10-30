@@ -36,21 +36,21 @@ export default class Coin extends React.Component {
             text = "Heads"
             coin = (
                 <div>
-                    <img src="/coin/front.png" />
+                    <img src="/img/front.png" />
                 </div>
             )
         } else if (this.state.side == 1) {
             text = "Tails"
             coin = (
                 <div>
-                    <img src="/coin/back.png" />
+                    <img src="/img/back.png" />
                 </div>
             )
         } else {
             text = "Edge"
             coin = (
                 <div>
-                    <img src="/coin/edge.png" />
+                    <img src="/img/edge.png" />
                 </div>
             )
         }
