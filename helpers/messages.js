@@ -60,7 +60,7 @@ const shareMessage = (apiUri, title) => {
                     subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',
-                        url: apiUri
+                        url: apiUri,
                         messenger_extensions: true
                     },
                     buttons: [
