@@ -25,5 +25,6 @@ app.use('/webhook', webhook)
 
 ThreadSetup.domainWhitelisting()
 ThreadSetup.getStartedButton()
+ThreadSetup.setHomeUrl()
 
 export default app

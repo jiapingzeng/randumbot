@@ -1,4 +1,5 @@
 import React from 'react'
+import {Button} from 'react-weui'
 
 import messages from '../helpers/messages'
 
@@ -16,9 +17,12 @@ const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
         )
     }
 
+    const iconClassName = sharingMode === 'broadcast' ? 'share' : 'send'
+
     return (
         <div id='invite'>
             <button onClick={shareCoin}>
+                <span className={`invite-icon ${iconClassName}`} />
                 {buttonText}
             </button>
         </div>

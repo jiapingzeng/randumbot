@@ -20,4 +20,13 @@ const getStartedButton = () => {
     })
 }
 
-export default { domainWhitelisting, getStartedButton }
+const setHomeUrl = () => {
+    api.callThreadAPI({
+        url: APP_URL,
+        webview_height_ratio: 'tall',
+        webview_share_button: 'hide',
+        in_test: true
+    })
+}
+
+export default { domainWhitelisting, getStartedButton, setHomeUrl }

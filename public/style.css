@@ -1,0 +1,19 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    color: #4A4A4A;
+    background-color: #FAFAFA;
+}
+
+body,
+.weui-input,
+.weui-cells {
+    font-size: 14px;
+}
+
+.weui-btn {
+    font-size: 1rem;
+}

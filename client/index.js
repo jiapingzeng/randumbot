@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom'
 
 import App from "./app.jsx"
 
+import 'react-weui/lib/react-weui.min.css'
+import '../public/style.css'
 
 window.attachApp = (viewerId, threadType) => {
     const apiUri = `https://${window.location.hostname}`
