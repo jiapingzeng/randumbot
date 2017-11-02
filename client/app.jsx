@@ -65,7 +65,6 @@ export default class App extends React.Component {
         // need to figure out how to include history in tiny UI
         page = (
             <section>
-                <h1>Tap on coin</h1>
                 <Coin heads={0.49} tails={0.49} recordResult={(r) => this.recordResult(r)} />
                 <ol>{/* sides */}</ol>
                 <div>{invite}</div>

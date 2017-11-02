@@ -1,5 +1,4 @@
 import React from 'react'
-import {Button} from 'react-weui'
 
 import messages from '../helpers/messages'
 

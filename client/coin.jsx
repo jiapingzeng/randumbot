@@ -55,9 +55,11 @@ export default class Coin extends React.Component {
             )
         }
         return (
-            <div>
+            <div className="coin-container">
                 <h1>{text}</h1>
-                <div onClick={() => this.handleClick()}>{coin}</div>
+                <div className="coin"></div>
+                <button onClick={() => this.handleClick()}>Flip</button>
+                <div className="hidden" onClick={() => this.handleClick()}>{coin}</div>
             </div>
         )
     }
