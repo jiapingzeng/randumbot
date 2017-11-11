@@ -23,8 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/', index)
 app.use('/webhook', webhook)
 
-ThreadSetup.domainWhitelisting()
-ThreadSetup.getStartedButton()
-ThreadSetup.setHomeUrl()
+if (!demo) {
+    ThreadSetup.domainWhitelisting()
+    ThreadSetup.getStartedButton()
+    ThreadSetup.setHomeUrl()
+}
 
 export default app

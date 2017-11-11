@@ -1,5 +1,4 @@
 import React, { createElement } from 'react'
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Coin from './coin.jsx'
 import Invite from './invite.jsx'
@@ -25,10 +24,11 @@ export default class App extends React.Component {
     sideToText(s) {
         switch (s) {
             case 0:
-                return 'Heads'
-            case 1:
                 return 'Tails'
             case 2:
+                return 'Heads'
+            case 1:
+            case 3:
                 return 'Edge'
         }
     }
@@ -43,7 +43,7 @@ export default class App extends React.Component {
             )
         })
         // invite button
-        const {apiUri, viewerId, threadType} = this.props
+        const { apiUri, viewerId, threadType } = this.props
         let invite, sharingMode, buttonText
         if (threadType === 'USER_TO_PAGE') {
             sharingMode = 'broadcast';
@@ -65,21 +65,17 @@ export default class App extends React.Component {
         // need to figure out how to include history in tiny UI
         page = (
             <section>
-                <Coin heads={0.49} tails={0.49} recordResult={(r) => this.recordResult(r)} />
-                <ol>{/* sides */}</ol>
+                <Coin heads={0.49} tails={0.49} side={2} recordResult={(r) => this.recordResult(r)} />
+                <button onClick={() => window.location.reload()}>Flip</button>
+                <p>Disclaimer: Highly beta build, visual (coin will always flip to heads) does not match actual result and share might also show different results</p>
+                <ol>{sides}</ol>
                 <div>{invite}</div>
             </section>
         )
         return (
             <div id='app'>
-                <ReactCSSTransitionGroup
-                    transitionName='page'
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={500}
-                >
-                    {page}
-                </ReactCSSTransitionGroup>
+                {page}
             </div>
-        );
+        )
     }
 }

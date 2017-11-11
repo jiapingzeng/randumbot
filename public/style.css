@@ -61,39 +61,3 @@ a {
         background-image: url('/img/share_icon@2x.png');
     }
 }
-
-.coin-container {
-    text-align: center;
-}
-
-/*
-.coin {
-    width: 360px;
-    height: 360px;
-    background: url('/img/sprites.png') left center;
-    animation: play 2.0s steps(12) infinite;
-}
-
-@keyframes play {
-    100% {
-        background-position: 4320px;
-    }
-}
-*/
-
-.coin {
-    width: 120px;
-    height: 120px;
-    background: url('/img/sprites_small.png') left center;
-    animation: play 2.0s steps(12) infinite;
-}
-
-@keyframes play {
-    100% {
-        background-position: 1440px;
-    }
-}
-
-.hidden {
-    display: none;
-}
