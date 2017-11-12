@@ -21250,19 +21250,15 @@ var App = function (_React$Component) {
             var r = Math.random();
             if (r < h) {
                 // tails
-                console.log('app tails');
                 return 0;
             } else if (r < h + t) {
                 // heads
-                console.log('app heads');
                 return 2;
             } else {
                 // edge
                 if (Math.floor(r * 100) % 2 == 0) {
-                    console.log('app edge 1');
                     return 1;
                 } else {
-                    console.log('app edge 2');
                     return 3;
                 }
             }
@@ -21301,11 +21297,10 @@ var App = function (_React$Component) {
                 sharingMode = 'current_thread';
                 buttonText = 'Send to conversation';
             }
-            console.log('/img/' + side.toString().toLowerCase() + '.png');
             invite = _react2.default.createElement(_invite2.default, {
                 title: side,
                 apiUri: apiUri,
-                imageUrl: '/img/' + side.toString().toLowerCase() + '.png',
+                imageUrl: window.location.protocol + '//' + window.location.hostname + '/img/' + side.toString().toLowerCase() + '.png',
                 sharingMode: sharingMode,
                 buttonText: buttonText
             });
