@@ -59,7 +59,7 @@ export default class App extends React.Component {
         }
         invite = (
             <Invite
-                title={side}
+                title={`${side}!`}
                 apiUri={apiUri}
                 imageUrl={`${window.location.protocol}//${window.location.hostname}/img/${side.toString().toLowerCase()}.png`}
                 sharingMode={sharingMode}

@@ -21298,7 +21298,7 @@ var App = function (_React$Component) {
                 buttonText = 'Send to conversation';
             }
             invite = _react2.default.createElement(_invite2.default, {
-                title: side,
+                title: side + '!',
                 apiUri: apiUri,
                 imageUrl: window.location.protocol + '//' + window.location.hostname + '/img/' + side.toString().toLowerCase() + '.png',
                 sharingMode: sharingMode,
@@ -21615,7 +21615,7 @@ var shareMessage = function shareMessage(apiUri, title, imageUrl) {
                 elements: [{
                     title: title,
                     image_url: imageUrl,
-                    subtitle: 'I am a dum bot',
+                    subtitle: 'I just flipped a coin for ya!',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,

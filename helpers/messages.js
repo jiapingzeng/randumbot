@@ -57,7 +57,7 @@ const shareMessage = (apiUri, title, imageUrl) => {
                 elements: [{
                     title: title,
                     image_url: imageUrl,
-                    subtitle: 'I am a dum bot',
+                    subtitle: 'I just flipped a coin for ya!',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,
