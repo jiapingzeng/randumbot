@@ -4,21 +4,36 @@ import Coin from './coin.jsx'
 import Invite from './invite.jsx'
 
 export default class App extends React.Component {
-    constructor() {
-        super()
-        this.state = {
-            history: []
-        }
+    constructor(props) {
+        super(props)
     }
 
     handleClick() {
         //window.alert(`button clicked ${window.location.hostname}`)
     }
 
-    recordResult(r) {
-        this.setState({
-            history: this.state.history.concat([r])
-        })
+    // chances of heads and tails (should add up to 1)
+    // 1-(h+t) is the chance of the coin landing on its edge
+    flipCoin(h, t) {
+        const r = Math.random()
+        if (r < h) {
+            // tails
+            console.log('app tails')
+            return 0
+        } else if (r < h + t) {
+            // heads
+            console.log('app heads')
+            return 2
+        } else {
+            // edge
+            if (Math.floor(r * 100) % 2 == 0) {
+                console.log('app edge 1')
+                return 1
+            } else {
+                console.log('app edge 2')
+                return 3
+            }
+        }
     }
 
     sideToText(s) {
@@ -34,14 +49,8 @@ export default class App extends React.Component {
     }
 
     render() {
-        // generate page
-        const history = this.state.history
-        const current = history[history.length - 1]
-        const sides = history.map((side, i) => {
-            return (
-                <li key={i}>{this.sideToText(side)}</li>
-            )
-        })
+        const result = this.flipCoin(0.49, 0.49)
+        const side = this.sideToText(result)
         // invite button
         const { apiUri, viewerId, threadType } = this.props
         let invite, sharingMode, buttonText
@@ -52,29 +61,22 @@ export default class App extends React.Component {
             sharingMode = 'current_thread';
             buttonText = 'Send to conversation';
         }
+        console.log(`/img/${side.toString().toLowerCase()}.png`)
         invite = (
             <Invite
-                title={`${this.sideToText(current)}!`}
+                title={side}
                 apiUri={apiUri}
+                imageUrl={`/img/${side.toString().toLowerCase()}.png`}
                 sharingMode={sharingMode}
                 buttonText={buttonText}
             />
         )
-
-        let page
-        // need to figure out how to include history in tiny UI
-        page = (
-            <section>
-                <Coin heads={0.49} tails={0.49} side={2} recordResult={(r) => this.recordResult(r)} />
-                <button onClick={() => window.location.reload()}>Flip</button>
-                <p>Disclaimer: Highly beta build, visual (coin will always flip to heads) does not match actual result and share might also show different results</p>
-                <ol>{sides}</ol>
-                <div>{invite}</div>
-            </section>
-        )
         return (
             <div id='app'>
-                {page}
+                <Coin side={result} />
+                <button onClick={() => window.location.reload()}>Flip again</button>
+                <p>Disclaimer: Highly beta build things probably won't work properly</p>
+                <div>{invite}</div>
             </div>
         )
     }

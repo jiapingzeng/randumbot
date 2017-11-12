@@ -48,7 +48,7 @@ const openAppMessage = () => {
     }
 }
 
-const shareMessage = (apiUri, title) => {
+const shareMessage = (apiUri, title, imageUrl) => {
     return {
         attachment: {
             type: 'template',
@@ -56,7 +56,7 @@ const shareMessage = (apiUri, title) => {
                 template_type: 'generic',
                 elements: [{
                     title: title,
-                    image_url: `https://i.imgur.com/r1d2XyA.png`,
+                    image_url: imageUrl,
                     subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',

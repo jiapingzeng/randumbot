@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 15);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -258,21 +258,6 @@ process.umask = function() { return 0; };
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-if (process.env.NODE_ENV === 'production') {
-  module.exports = __webpack_require__(20);
-} else {
-  module.exports = __webpack_require__(21);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 /**
@@ -311,7 +296,7 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -368,6 +353,21 @@ function invariant(condition, format, a, b, c, d, e, f) {
 }
 
 module.exports = invariant;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+if (process.env.NODE_ENV === 'production') {
+  module.exports = __webpack_require__(16);
+} else {
+  module.exports = __webpack_require__(17);
+}
+
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
@@ -471,41 +471,6 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-if (process.env.NODE_ENV !== 'production') {
-  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
-    Symbol.for &&
-    Symbol.for('react.element')) ||
-    0xeac7;
-
-  var isValidElement = function(object) {
-    return typeof object === 'object' &&
-      object !== null &&
-      object.$$typeof === REACT_ELEMENT_TYPE;
-  };
-
-  // By explicitly using `prop-types` you are opting into new development behavior.
-  // http://fb.me/prop-types-in-prod
-  var throwOnDirectAccess = true;
-  module.exports = __webpack_require__(32)(isValidElement, throwOnDirectAccess);
-} else {
-  // By explicitly using `prop-types` you are opting into new production behavior.
-  // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(33)();
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -527,7 +492,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -541,7 +506,7 @@ module.exports = emptyObject;
 
 
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -596,7 +561,7 @@ module.exports = warning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -610,9 +575,9 @@ module.exports = warning;
 
 
 if (process.env.NODE_ENV !== 'production') {
-  var invariant = __webpack_require__(3);
-  var warning = __webpack_require__(7);
-  var ReactPropTypesSecret = __webpack_require__(9);
+  var invariant = __webpack_require__(2);
+  var warning = __webpack_require__(6);
+  var ReactPropTypesSecret = __webpack_require__(8);
   var loggedTypeFailures = {};
 }
 
@@ -663,7 +628,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -682,7 +647,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -721,53 +686,7 @@ var ExecutionEnvironment = {
 module.exports = ExecutionEnvironment;
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-function checkDCE() {
-  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
-  if (
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
-    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
-  ) {
-    return;
-  }
-  if (process.env.NODE_ENV !== 'production') {
-    // This branch is unreachable because this function is only called
-    // in production, but the condition is true only in development.
-    // Therefore if the branch is still here, dead code elimination wasn't
-    // properly applied.
-    // Don't change the message. React DevTools relies on it. Also make sure
-    // this message doesn't occur elsewhere in this function, or it will cause
-    // a false positive.
-    throw new Error('^_^');
-  }
-  try {
-    // Verify that the code above has been dead code eliminated (DCE'd).
-    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
-  } catch (err) {
-    // DevTools shouldn't crash React, no matter what.
-    // We should still report in case we break this code.
-    console.error(err);
-  }
-}
-
-if (process.env.NODE_ENV === 'production') {
-  // DCE check should happen before ReactDOM bundle executes so that
-  // DevTools can report bad minification during injection.
-  checkDCE();
-  module.exports = __webpack_require__(22);
-} else {
-  module.exports = __webpack_require__(25);
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 12 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -782,7 +701,7 @@ if (process.env.NODE_ENV === 'production') {
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -848,7 +767,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 13 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -919,7 +838,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 14 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,7 +853,7 @@ module.exports = shallowEqual;
  * 
  */
 
-var isTextNode = __webpack_require__(23);
+var isTextNode = __webpack_require__(20);
 
 /*eslint-disable no-bitwise */
 
@@ -962,7 +881,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 15 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -992,7 +911,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 16 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1034,27 +953,25 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 17 */,
-/* 18 */,
-/* 19 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(11);
+var _reactDom = __webpack_require__(18);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _app = __webpack_require__(34);
+var _app = __webpack_require__(32);
 
 var _app2 = _interopRequireDefault(_app);
 
-__webpack_require__(50);
+__webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1078,7 +995,7 @@ window.attachApp = function (viewerId, threadType) {
 };
 
 /***/ }),
-/* 20 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1091,7 +1008,7 @@ window.attachApp = function (viewerId, threadType) {
  This source code is licensed under the MIT license found in the
  LICENSE file in the root directory of this source tree.
 */
-var f=__webpack_require__(4),p=__webpack_require__(6);__webpack_require__(3);var r=__webpack_require__(2);
+var f=__webpack_require__(4),p=__webpack_require__(5);__webpack_require__(2);var r=__webpack_require__(1);
 function t(a){for(var b=arguments.length-1,d="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,e=0;e<b;e++)d+="\x26args[]\x3d"+encodeURIComponent(arguments[e+1]);b=Error(d+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}
 var u={isMounted:function(){return!1},enqueueForceUpdate:function(){},enqueueReplaceState:function(){},enqueueSetState:function(){}};function v(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}v.prototype.isReactComponent={};v.prototype.setState=function(a,b){"object"!==typeof a&&"function"!==typeof a&&null!=a?t("85"):void 0;this.updater.enqueueSetState(this,a,b,"setState")};v.prototype.forceUpdate=function(a){this.updater.enqueueForceUpdate(this,a,"forceUpdate")};
 function w(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}function x(){}x.prototype=v.prototype;var y=w.prototype=new x;y.constructor=w;f(y,v.prototype);y.isPureReactComponent=!0;function z(a,b,d){this.props=a;this.context=b;this.refs=p;this.updater=d||u}var A=z.prototype=new x;A.constructor=z;f(A,v.prototype);A.unstable_isAsyncReactComponent=!0;A.render=function(){return this.props.children};
@@ -1108,7 +1025,7 @@ module.exports={Children:{map:S.map,forEach:S.forEach,count:S.count,toArray:S.to
 
 
 /***/ }),
-/* 21 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1129,11 +1046,11 @@ if (process.env.NODE_ENV !== "production") {
 'use strict';
 
 var objectAssign$1 = __webpack_require__(4);
-var require$$0 = __webpack_require__(7);
-var emptyObject = __webpack_require__(6);
-var invariant = __webpack_require__(3);
-var emptyFunction = __webpack_require__(2);
-var checkPropTypes = __webpack_require__(8);
+var require$$0 = __webpack_require__(6);
+var emptyObject = __webpack_require__(5);
+var invariant = __webpack_require__(2);
+var emptyFunction = __webpack_require__(1);
+var checkPropTypes = __webpack_require__(7);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -2814,7 +2731,53 @@ module.exports = ReactEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+function checkDCE() {
+  /* global __REACT_DEVTOOLS_GLOBAL_HOOK__ */
+  if (
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined' ||
+    typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE !== 'function'
+  ) {
+    return;
+  }
+  if (process.env.NODE_ENV !== 'production') {
+    // This branch is unreachable because this function is only called
+    // in production, but the condition is true only in development.
+    // Therefore if the branch is still here, dead code elimination wasn't
+    // properly applied.
+    // Don't change the message. React DevTools relies on it. Also make sure
+    // this message doesn't occur elsewhere in this function, or it will cause
+    // a false positive.
+    throw new Error('^_^');
+  }
+  try {
+    // Verify that the code above has been dead code eliminated (DCE'd).
+    __REACT_DEVTOOLS_GLOBAL_HOOK__.checkDCE(checkDCE);
+  } catch (err) {
+    // DevTools shouldn't crash React, no matter what.
+    // We should still report in case we break this code.
+    console.error(err);
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  // DCE check should happen before ReactDOM bundle executes so that
+  // DevTools can report bad minification during injection.
+  checkDCE();
+  module.exports = __webpack_require__(19);
+} else {
+  module.exports = __webpack_require__(22);
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2828,7 +2791,7 @@ module.exports = ReactEntry;
  LICENSE file in the root directory of this source tree.
  Modernizr 3.0.0pre (Custom Build) | MIT
 */
-var aa=__webpack_require__(1);__webpack_require__(3);var l=__webpack_require__(10),n=__webpack_require__(4),ba=__webpack_require__(12),ca=__webpack_require__(2),da=__webpack_require__(6),ea=__webpack_require__(13),fa=__webpack_require__(14),ha=__webpack_require__(15),ia=__webpack_require__(16);
+var aa=__webpack_require__(3);__webpack_require__(2);var l=__webpack_require__(9),n=__webpack_require__(4),ba=__webpack_require__(10),ca=__webpack_require__(1),da=__webpack_require__(5),ea=__webpack_require__(11),fa=__webpack_require__(12),ha=__webpack_require__(13),ia=__webpack_require__(14);
 function w(a){for(var b=arguments.length-1,c="Minified React error #"+a+"; visit http://facebook.github.io/react/docs/error-decoder.html?invariant\x3d"+a,d=0;d<b;d++)c+="\x26args[]\x3d"+encodeURIComponent(arguments[d+1]);b=Error(c+" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.");b.name="Invariant Violation";b.framesToPop=1;throw b;}aa?void 0:w("227");
 function ja(a){switch(a){case "svg":return"http://www.w3.org/2000/svg";case "math":return"http://www.w3.org/1998/Math/MathML";default:return"http://www.w3.org/1999/xhtml"}}
 var ka={Namespaces:{html:"http://www.w3.org/1999/xhtml",mathml:"http://www.w3.org/1998/Math/MathML",svg:"http://www.w3.org/2000/svg"},getIntrinsicNamespace:ja,getChildNamespace:function(a,b){return null==a||"http://www.w3.org/1999/xhtml"===a?ja(b):"http://www.w3.org/2000/svg"===a&&"foreignObject"===b?"http://www.w3.org/1999/xhtml":a}},la=null,oa={};
@@ -3077,7 +3040,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
 
 
 /***/ }),
-/* 23 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3092,7 +3055,7 @@ unstable_deferredUpdates:Xj.deferredUpdates,flushSync:Xj.flushSync,__SECRET_INTE
  * @typechecks
  */
 
-var isNode = __webpack_require__(24);
+var isNode = __webpack_require__(21);
 
 /**
  * @param {*} object The object to check.
@@ -3105,7 +3068,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 24 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3133,7 +3096,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 25 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3153,23 +3116,23 @@ if (process.env.NODE_ENV !== "production") {
 
 'use strict';
 
-var react = __webpack_require__(1);
-var invariant = __webpack_require__(3);
-var ExecutionEnvironment = __webpack_require__(10);
+var react = __webpack_require__(3);
+var invariant = __webpack_require__(2);
+var ExecutionEnvironment = __webpack_require__(9);
 var _assign = __webpack_require__(4);
-var EventListener = __webpack_require__(12);
-var require$$0 = __webpack_require__(7);
-var hyphenateStyleName = __webpack_require__(26);
-var emptyFunction = __webpack_require__(2);
-var camelizeStyleName = __webpack_require__(28);
-var performanceNow = __webpack_require__(30);
-var propTypes = __webpack_require__(5);
-var emptyObject = __webpack_require__(6);
-var checkPropTypes = __webpack_require__(8);
-var shallowEqual = __webpack_require__(13);
-var containsNode = __webpack_require__(14);
-var focusNode = __webpack_require__(15);
-var getActiveElement = __webpack_require__(16);
+var EventListener = __webpack_require__(10);
+var require$$0 = __webpack_require__(6);
+var hyphenateStyleName = __webpack_require__(23);
+var emptyFunction = __webpack_require__(1);
+var camelizeStyleName = __webpack_require__(25);
+var performanceNow = __webpack_require__(27);
+var propTypes = __webpack_require__(29);
+var emptyObject = __webpack_require__(5);
+var checkPropTypes = __webpack_require__(7);
+var shallowEqual = __webpack_require__(11);
+var containsNode = __webpack_require__(12);
+var focusNode = __webpack_require__(13);
+var getActiveElement = __webpack_require__(14);
 
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -20362,7 +20325,7 @@ module.exports = ReactDOMFiberEntry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20377,7 +20340,7 @@ module.exports = ReactDOMFiberEntry;
 
 
 
-var hyphenate = __webpack_require__(27);
+var hyphenate = __webpack_require__(24);
 
 var msPattern = /^ms-/;
 
@@ -20404,7 +20367,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 27 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20440,7 +20403,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 28 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20455,7 +20418,7 @@ module.exports = hyphenate;
 
 
 
-var camelize = __webpack_require__(29);
+var camelize = __webpack_require__(26);
 
 var msPattern = /^-ms-/;
 
@@ -20483,7 +20446,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 29 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20518,7 +20481,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 30 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20533,7 +20496,7 @@ module.exports = camelize;
  * @typechecks
  */
 
-var performance = __webpack_require__(31);
+var performance = __webpack_require__(28);
 
 var performanceNow;
 
@@ -20555,7 +20518,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 31 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20570,7 +20533,7 @@ module.exports = performanceNow;
 
 
 
-var ExecutionEnvironment = __webpack_require__(10);
+var ExecutionEnvironment = __webpack_require__(9);
 
 var performance;
 
@@ -20581,7 +20544,42 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 32 */
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+if (process.env.NODE_ENV !== 'production') {
+  var REACT_ELEMENT_TYPE = (typeof Symbol === 'function' &&
+    Symbol.for &&
+    Symbol.for('react.element')) ||
+    0xeac7;
+
+  var isValidElement = function(object) {
+    return typeof object === 'object' &&
+      object !== null &&
+      object.$$typeof === REACT_ELEMENT_TYPE;
+  };
+
+  // By explicitly using `prop-types` you are opting into new development behavior.
+  // http://fb.me/prop-types-in-prod
+  var throwOnDirectAccess = true;
+  module.exports = __webpack_require__(30)(isValidElement, throwOnDirectAccess);
+} else {
+  // By explicitly using `prop-types` you are opting into new production behavior.
+  // http://fb.me/prop-types-in-prod
+  module.exports = __webpack_require__(31)();
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
+
+/***/ }),
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -20594,13 +20592,13 @@ module.exports = performance || {};
 
 
 
-var emptyFunction = __webpack_require__(2);
-var invariant = __webpack_require__(3);
-var warning = __webpack_require__(7);
+var emptyFunction = __webpack_require__(1);
+var invariant = __webpack_require__(2);
+var warning = __webpack_require__(6);
 var assign = __webpack_require__(4);
 
-var ReactPropTypesSecret = __webpack_require__(9);
-var checkPropTypes = __webpack_require__(8);
+var ReactPropTypesSecret = __webpack_require__(8);
+var checkPropTypes = __webpack_require__(7);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -21131,7 +21129,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21144,9 +21142,9 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 
 
 
-var emptyFunction = __webpack_require__(2);
-var invariant = __webpack_require__(3);
-var ReactPropTypesSecret = __webpack_require__(9);
+var emptyFunction = __webpack_require__(1);
+var invariant = __webpack_require__(2);
+var ReactPropTypesSecret = __webpack_require__(8);
 
 module.exports = function() {
   function shim(props, propName, componentName, location, propFullName, secret) {
@@ -21196,7 +21194,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21208,15 +21206,15 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _coin = __webpack_require__(47);
+var _coin = __webpack_require__(33);
 
 var _coin2 = _interopRequireDefault(_coin);
 
-var _invite = __webpack_require__(48);
+var _invite = __webpack_require__(34);
 
 var _invite2 = _interopRequireDefault(_invite);
 
@@ -21231,28 +21229,43 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var App = function (_React$Component) {
     _inherits(App, _React$Component);
 
-    function App() {
+    function App(props) {
         _classCallCheck(this, App);
 
-        var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this));
-
-        _this.state = {
-            history: []
-        };
-        return _this;
+        return _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
     }
 
     _createClass(App, [{
         key: 'handleClick',
-        value: function handleClick() {
-            //window.alert(`button clicked ${window.location.hostname}`)
-        }
+        value: function handleClick() {}
+        //window.alert(`button clicked ${window.location.hostname}`)
+
+
+        // chances of heads and tails (should add up to 1)
+        // 1-(h+t) is the chance of the coin landing on its edge
+
     }, {
-        key: 'recordResult',
-        value: function recordResult(r) {
-            this.setState({
-                history: this.state.history.concat([r])
-            });
+        key: 'flipCoin',
+        value: function flipCoin(h, t) {
+            var r = Math.random();
+            if (r < h) {
+                // tails
+                console.log('app tails');
+                return 0;
+            } else if (r < h + t) {
+                // heads
+                console.log('app heads');
+                return 2;
+            } else {
+                // edge
+                if (Math.floor(r * 100) % 2 == 0) {
+                    console.log('app edge 1');
+                    return 1;
+                } else {
+                    console.log('app edge 2');
+                    return 3;
+                }
+            }
         }
     }, {
         key: 'sideToText',
@@ -21270,18 +21283,8 @@ var App = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this2 = this;
-
-            // generate page
-            var history = this.state.history;
-            var current = history[history.length - 1];
-            var sides = history.map(function (side, i) {
-                return _react2.default.createElement(
-                    'li',
-                    { key: i },
-                    _this2.sideToText(side)
-                );
-            });
+            var result = this.flipCoin(0.49, 0.49);
+            var side = this.sideToText(result);
             // invite button
             var _props = this.props,
                 apiUri = _props.apiUri,
@@ -21298,48 +21301,35 @@ var App = function (_React$Component) {
                 sharingMode = 'current_thread';
                 buttonText = 'Send to conversation';
             }
+            console.log('/img/' + side.toString().toLowerCase() + '.png');
             invite = _react2.default.createElement(_invite2.default, {
-                title: this.sideToText(current) + '!',
+                title: side,
                 apiUri: apiUri,
+                imageUrl: '/img/' + side.toString().toLowerCase() + '.png',
                 sharingMode: sharingMode,
                 buttonText: buttonText
             });
-
-            var page = void 0;
-            // need to figure out how to include history in tiny UI
-            page = _react2.default.createElement(
-                'section',
-                null,
-                _react2.default.createElement(_coin2.default, { heads: 0.49, tails: 0.49, side: 2, recordResult: function recordResult(r) {
-                        return _this2.recordResult(r);
-                    } }),
+            return _react2.default.createElement(
+                'div',
+                { id: 'app' },
+                _react2.default.createElement(_coin2.default, { side: result }),
                 _react2.default.createElement(
                     'button',
                     { onClick: function onClick() {
                             return window.location.reload();
                         } },
-                    'Flip'
+                    'Flip again'
                 ),
                 _react2.default.createElement(
                     'p',
                     null,
-                    'Disclaimer: Highly beta build, visual (coin will always flip to heads) does not match actual result and share might also show different results'
-                ),
-                _react2.default.createElement(
-                    'ol',
-                    null,
-                    sides
+                    'Disclaimer: Highly beta build things probably won\'t work properly'
                 ),
                 _react2.default.createElement(
                     'div',
                     null,
                     invite
                 )
-            );
-            return _react2.default.createElement(
-                'div',
-                { id: 'app' },
-                page
             );
         }
     }]);
@@ -21350,19 +21340,7 @@ var App = function (_React$Component) {
 exports.default = App;
 
 /***/ }),
-/* 35 */,
-/* 36 */,
-/* 37 */,
-/* 38 */,
-/* 39 */,
-/* 40 */,
-/* 41 */,
-/* 42 */,
-/* 43 */,
-/* 44 */,
-/* 45 */,
-/* 46 */,
-/* 47 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21374,7 +21352,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -21394,7 +21372,9 @@ var Coin = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Coin.__proto__ || Object.getPrototypeOf(Coin)).call(this, props));
 
+        console.log('coin' + _this.props.side);
         _this.state = {
+            width: 360,
             side: _this.props.side, // 0: tails, 1: edge1, 2: heads, 3: edge2
             backgroundPosition: 0,
             stopRotation: true
@@ -21469,55 +21449,24 @@ var Coin = function (_React$Component) {
                 var stopAt = side * 1080;
                 if (pos == stopAt) {
                     console.log('side is ' + side + ' stopped at ' + stopAt);
+                    return false;
                 } else if (pos < 360 * 12) {
                     this.setState({ backgroundPosition: pos + 360 });
                 } else {
                     this.setState({ backgroundPosition: 0 });
                 }
             }
-        }
-    }, {
-        key: 'handleClick',
-        value: function handleClick() {
-            //if (!this.state.stopRotation) {
-            this.flipCoin(this.props.heads, this.props.tails);
-            this.setState({ stopRotation: true });
-            //}
-        }
-
-        // chances of heads and tails (should add up to 1)
-        // 1-(h+t) is the chance of the coin landing on its edge
-
-    }, {
-        key: 'flipCoin',
-        value: function flipCoin(h, t) {
-            var r = Math.random();
-            if (r < h) {
-                // tails
-                this.setState({ side: 0 });
-            } else if (r < h + t) {
-                // heads
-                this.setState({ side: 2 });
-            } else {
-                // edge
-                if (Math.floor(r * 100) % 2 == 0) {
-                    this.setState({ side: 1 });
-                } else {
-                    this.setState({ side: 3 });
-                }
-            }
-            this.props.recordResult(this.state.side);
+            return true;
         }
     }, {
         key: 'render',
         value: function render() {
             var side = this.state.side;
-            var text = void 0,
-                coin = void 0;
+            var coinWidth = this.state.width;
             var pos = this.state.backgroundPosition;
             var style = {
-                width: '360px',
-                height: '360px',
+                width: coinWidth + 'px',
+                height: coinWidth + 'px',
                 backgroundImage: 'url(/img/sprites.png)',
                 backgroundPosition: this.normalizeBackgroundPosition(pos) + 'px'
             };
@@ -21546,7 +21495,7 @@ var Coin = function (_React$Component) {
 exports.default = Coin;
 
 /***/ }),
-/* 48 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21556,11 +21505,11 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _react = __webpack_require__(1);
+var _react = __webpack_require__(3);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _messages = __webpack_require__(49);
+var _messages = __webpack_require__(35);
 
 var _messages2 = _interopRequireDefault(_messages);
 
@@ -21569,6 +21518,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var Invite = function Invite(_ref) {
     var title = _ref.title,
         apiUri = _ref.apiUri,
+        imageUrl = _ref.imageUrl,
         sharingMode = _ref.sharingMode,
         buttonText = _ref.buttonText;
 
@@ -21579,7 +21529,7 @@ var Invite = function Invite(_ref) {
             }
         }, function error(errorCode, errorMessage) {
             console.error('Error ' + errorCode + ': ' + errorMessage);
-        }, _messages2.default.shareMessage(apiUri, title), sharingMode);
+        }, _messages2.default.shareMessage(apiUri, title, imageUrl), sharingMode);
     };
 
     var iconClassName = sharingMode === 'broadcast' ? 'share' : 'send';
@@ -21603,7 +21553,7 @@ var Invite = function Invite(_ref) {
 exports.default = Invite;
 
 /***/ }),
-/* 49 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21661,7 +21611,7 @@ var openAppMessage = function openAppMessage() {
     };
 };
 
-var shareMessage = function shareMessage(apiUri, title) {
+var shareMessage = function shareMessage(apiUri, title, imageUrl) {
     return {
         attachment: {
             type: 'template',
@@ -21669,7 +21619,7 @@ var shareMessage = function shareMessage(apiUri, title) {
                 template_type: 'generic',
                 elements: [{
                     title: title,
-                    image_url: 'https://i.imgur.com/r1d2XyA.png',
+                    image_url: imageUrl,
                     subtitle: 'I am a dum bot',
                     default_action: {
                         type: 'web_url',
@@ -21686,13 +21636,13 @@ exports.default = { welcomeMessage: welcomeMessage, openAppMessage: openAppMessa
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 50 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(51);
+var content = __webpack_require__(37);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -21700,7 +21650,7 @@ var transform;
 var options = {"hmr":true}
 options.transform = transform
 // add the styles to the DOM
-var update = __webpack_require__(53)(content, options);
+var update = __webpack_require__(39)(content, options);
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -21717,21 +21667,21 @@ if(false) {
 }
 
 /***/ }),
-/* 51 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(52)(undefined);
+exports = module.exports = __webpack_require__(38)(undefined);
 // imports
 
 
 // module
-exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n}\r\n\r\n#content {\r\n    text-align: center;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n    background-image: linear-gradient(rgba(255, 255, 255, 0), #FFF 40%);\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 3.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
+exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n}\r\n\r\n#content {\r\n    text-align: center;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n    background-image: linear-gradient(rgba(255, 255, 255, 0), #FFF 40%);\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 2.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
 
 // exports
 
 
 /***/ }),
-/* 52 */
+/* 38 */
 /***/ (function(module, exports) {
 
 /*
@@ -21813,7 +21763,7 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 53 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -21869,7 +21819,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(54);
+var	fixUrls = __webpack_require__(40);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -22185,7 +22135,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 54 */
+/* 40 */
 /***/ (function(module, exports) {
 
 

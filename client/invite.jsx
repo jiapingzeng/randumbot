@@ -2,7 +2,7 @@ import React from 'react'
 
 import messages from '../helpers/messages'
 
-const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
+const Invite = ({ title, apiUri, imageUrl, sharingMode, buttonText }) => {
     const shareCoin = () => {
         window.MessengerExtensions.beginShareFlow(
             function success(response) {
@@ -11,7 +11,7 @@ const Invite = ({ title, apiUri, sharingMode, buttonText }) => {
                 }
             }, function error(errorCode, errorMessage) {
                 console.error(`Error ${errorCode}: ${errorMessage}`)
-            }, messages.shareMessage(apiUri, title),
+            }, messages.shareMessage(apiUri, title, imageUrl),
             sharingMode
         )
     }
