@@ -1,7 +1,7 @@
 {
   "name": "randumbot",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.8.1",
+  "description": "Messenger bot + chat extension that flips a coin",
   "main": "app.js",
   "dependencies": {
     "babel-core": "^6.26.0",

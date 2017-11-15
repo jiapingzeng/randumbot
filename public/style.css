@@ -7,10 +7,25 @@ body {
     color: #4A4A4A;
     background-color: #FAFAFA;
     font-size: 14px;
+    margin: 0;
 }
 
-#content {
+.center {
+    margin: 0 auto;
     text-align: center;
+}
+
+.button {
+    width: 15em;
+    height: 3em;
+    color: #F2F2F2;
+    background-color: #464646;
+    border: none;
+}
+
+#coin {
+    background-image: url(/img/sprites.png);
+    background-size: cover;
 }
 
 #invite {
@@ -18,7 +33,6 @@ body {
     bottom: 0;
     width: 100%;
     padding: 0.5rem 1rem;
-    background-image: linear-gradient(rgba(255, 255, 255, 0), #FFF 40%);
 }
 
     #invite button {
@@ -32,6 +46,10 @@ body {
 
 a {
     color: #00B7FF;
+}
+
+.hidden {
+    //display: none;
 }
 
 .invite-icon {

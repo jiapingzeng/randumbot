@@ -66,13 +66,18 @@ export default class App extends React.Component {
                 buttonText={buttonText}
             />
         )
+        let coinWidth = window.innerWidth * 0.5
         return (
             <div id='app'>
-                <Coin side={result} />
-                <button onClick={() => window.location.reload()}>Flip again</button>
-                <p>Disclaimer: Highly beta build things probably won't work properly</p>
+                <br />
+                <br />
+                <Coin width={coinWidth} side={result} />
+                <div className='center'>
+                    <h4>Disclaimer: Highly beta build, probably won't work properly</h4>
+                </div>
                 <div>{invite}</div>
             </div>
         )
     }
+
 }

@@ -21304,21 +21304,21 @@ var App = function (_React$Component) {
                 sharingMode: sharingMode,
                 buttonText: buttonText
             });
+            var coinWidth = window.innerWidth * 0.5;
             return _react2.default.createElement(
                 'div',
                 { id: 'app' },
-                _react2.default.createElement(_coin2.default, { side: result }),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement('br', null),
+                _react2.default.createElement(_coin2.default, { width: coinWidth, side: result }),
                 _react2.default.createElement(
-                    'button',
-                    { onClick: function onClick() {
-                            return window.location.reload();
-                        } },
-                    'Flip again'
-                ),
-                _react2.default.createElement(
-                    'p',
-                    null,
-                    'Disclaimer: Highly beta build things probably won\'t work properly'
+                    'div',
+                    { className: 'center' },
+                    _react2.default.createElement(
+                        'h4',
+                        null,
+                        'Disclaimer: Highly beta build, probably won\'t work properly'
+                    )
                 ),
                 _react2.default.createElement(
                     'div',
@@ -21367,12 +21367,12 @@ var Coin = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (Coin.__proto__ || Object.getPrototypeOf(Coin)).call(this, props));
 
-        console.log('coin' + _this.props.side);
         _this.state = {
-            width: 360,
+            width: _this.props.width,
             side: _this.props.side, // 0: tails, 1: edge1, 2: heads, 3: edge2
             backgroundPosition: 0,
-            stopRotation: true
+            stopped: true,
+            flipping: true
         };
         return _this;
     }
@@ -21382,38 +21382,22 @@ var Coin = function (_React$Component) {
         value: function componentDidMount() {
             var _this2 = this;
 
-            if (this.state.stopRotation) {
-                var pos = this.state.backgroundPosition;
-                this.setState({ backgroundPosition: pos - 360 * 60 });
-                console.log(this.state.backgroundPosition);
-                this.setDeceleratingTimeout(function () {
-                    _this2.rotateCoin();
-                }, 2, 3000);
-            } else {
-                this.setLinearTimeout(function () {
-                    _this2.rotateCoin();
-                }, 300);
-            }
+            var width = this.state.width;
+            var pos = this.state.backgroundPosition;
+            this.setState({ backgroundPosition: pos - width * 60 });
+            this.setDeceleratingTimeout(function () {
+                _this2.rotateCoin();
+            }, 2, 3000);
         }
     }, {
         key: 'normalizeBackgroundPosition',
         value: function normalizeBackgroundPosition(p) {
+            var width = this.state.width;
             var n = p;
             while (n < 0) {
-                n += 360 * 12;
+                n += width * 12;
             }
             return n;
-        }
-    }, {
-        key: 'setLinearTimeout',
-        value: function setLinearTimeout(callback, interval) {
-            var internalCallback = function () {
-                return function () {
-                    window.setTimeout(internalCallback, interval);
-                    callback();
-                };
-            }();
-            window.setTimeout(internalCallback, 0);
         }
     }, {
         key: 'setDeceleratingTimeout',
@@ -21432,55 +21416,74 @@ var Coin = function (_React$Component) {
         key: 'rotateCoin',
         value: function rotateCoin() {
             var pos = this.state.backgroundPosition;
-            var stop = this.state.stopRotation;
-            if (!stop) {
-                if (pos < 360 * 12) {
-                    this.setState({ backgroundPosition: pos + 360 });
+            var stopped = this.state.stopped;
+            var width = this.state.width;
+            if (!stopped) {
+                // rotate non-stop
+                if (pos < width * 12) {
+                    this.setState({ backgroundPosition: pos + width });
                 } else {
                     this.setState({ backgroundPosition: 0 });
                 }
             } else {
+                // stop at side
                 var side = this.state.side;
-                var stopAt = side * 1080;
+                var stopAt = side * width * 3;
                 if (pos == stopAt) {
-                    console.log('side is ' + side + ' stopped at ' + stopAt);
-                    return false;
-                } else if (pos < 360 * 12) {
-                    this.setState({ backgroundPosition: pos + 360 });
+                    this.setState({ flipping: false });
+                } else if (pos < width * 12) {
+                    this.setState({ backgroundPosition: pos + width });
                 } else {
                     this.setState({ backgroundPosition: 0 });
                 }
             }
-            return true;
+        }
+    }, {
+        key: 'sideToText',
+        value: function sideToText(s) {
+            switch (s) {
+                case 0:
+                    return 'Tails';
+                case 2:
+                    return 'Heads';
+                case 1:
+                case 3:
+                    return 'Edge';
+            }
         }
     }, {
         key: 'render',
         value: function render() {
             var side = this.state.side;
             var coinWidth = this.state.width;
+            var flipping = this.state.flipping;
             var pos = this.state.backgroundPosition;
             var style = {
                 width: coinWidth + 'px',
                 height: coinWidth + 'px',
-                backgroundImage: 'url(/img/sprites.png)',
                 backgroundPosition: this.normalizeBackgroundPosition(pos) + 'px'
             };
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement('div', { style: style })
+                { className: 'container' },
+                _react2.default.createElement('div', { id: 'coin', className: 'center', style: style }),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'center' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        flipping ? 'Flipping...' : this.sideToText(side)
+                    ),
+                    _react2.default.createElement(
+                        'button',
+                        { className: flipping ? 'hidden button' : 'button', onClick: function onClick() {
+                                return window.location.reload();
+                            } },
+                        'Flip again'
+                    )
+                )
             );
-            /*
-            return (
-                <div className="coin-container">
-                    <h1>{text}</h1>
-                    
-                    <div className="coin"></div>
-                    <button onClick={() => this.handleClick()}>Flip</button>
-                    <div className="hidden" onClick={() => this.handleClick()}>{coin}</div>
-                </div>
-            )
-            */
         }
     }]);
 
@@ -21568,7 +21571,7 @@ var openAppButton = function openAppButton() {
         title: buttonText,
         url: apiUri,
         messenger_extensions: true,
-        webview_height_ratio: 'tall'
+        webview_height_ratio: 'compact'
     };
 };
 
@@ -21670,7 +21673,7 @@ exports = module.exports = __webpack_require__(38)(undefined);
 
 
 // module
-exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n}\r\n\r\n#content {\r\n    text-align: center;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n    background-image: linear-gradient(rgba(255, 255, 255, 0), #FFF 40%);\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 2.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
+exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.center {\r\n    margin: 0 auto;\r\n    text-align: center;\r\n}\r\n\r\n.button {\r\n    width: 15em;\r\n    height: 3em;\r\n    color: #F2F2F2;\r\n    background-color: #464646;\r\n    border: none;\r\n}\r\n\r\n#coin {\r\n    background-image: url(/img/sprites.png);\r\n    background-size: cover;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 2.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.hidden {\r\n    //display: none;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
 
 // exports
 
