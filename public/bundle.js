@@ -21571,7 +21571,7 @@ var openAppButton = function openAppButton() {
         title: buttonText,
         url: apiUri,
         messenger_extensions: true,
-        webview_height_ratio: 'compact'
+        webview_height_ratio: 'tall'
     };
 };
 
@@ -21623,7 +21623,8 @@ var shareMessage = function shareMessage(apiUri, title, imageUrl) {
                         type: 'web_url',
                         url: apiUri,
                         messenger_extensions: true
-                    }
+                    },
+                    buttons: [openAppButton()]
                 }]
             }
         }
@@ -21673,7 +21674,7 @@ exports = module.exports = __webpack_require__(38)(undefined);
 
 
 // module
-exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.center {\r\n    margin: 0 auto;\r\n    text-align: center;\r\n}\r\n\r\n.button {\r\n    width: 15em;\r\n    height: 3em;\r\n    color: #F2F2F2;\r\n    background-color: #464646;\r\n    border: none;\r\n}\r\n\r\n#coin {\r\n    background-image: url(/img/sprites.png);\r\n    background-size: cover;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 2.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.hidden {\r\n    //display: none;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
+exports.push([module.i, "*, *::before, *::after {\r\n    box-sizing: border-box;\r\n}\r\n\r\nbody {\r\n    font-family: -apple-system, BlinkMacSystemFont, Roboto, sans-serif;\r\n    color: #4A4A4A;\r\n    background-color: #FAFAFA;\r\n    font-size: 14px;\r\n    margin: 0;\r\n}\r\n\r\n.center {\r\n    margin: 0 auto;\r\n    text-align: center;\r\n}\r\n\r\n.button {\r\n    width: 15em;\r\n    height: 3em;\r\n    color: #F2F2F2;\r\n    background-color: #464646;\r\n    border: none;\r\n}\r\n\r\n#coin {\r\n    background-image: url(/img/sprites.png);\r\n    background-size: cover;\r\n}\r\n\r\n#invite {\r\n    position: fixed;\r\n    bottom: 0;\r\n    width: 100%;\r\n    padding: 0.5rem 1rem;\r\n}\r\n\r\n    #invite button {\r\n        width: 100%;\r\n        height: 2.75rem;\r\n        margin: 0;\r\n        color: #FAFAFA;\r\n        background-color: #0083FF;\r\n        border: none;\r\n    }\r\n\r\na {\r\n    color: #00B7FF;\r\n}\r\n\r\n.hidden {\r\n    display: none;\r\n}\r\n\r\n.invite-icon {\r\n    display: inline-block;\r\n    width: 1.5rem;\r\n    height: 1.5rem;\r\n    margin-right: 0.5rem;\r\n    vertical-align: middle;\r\n}\r\n\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon.png');\r\n        background-size: cover;\r\n    }\r\n\r\n@media only screen and (min-device-pixel-ratio: 1.5), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {\r\n    .invite-icon.send {\r\n        background-image: url('/img/send_icon@2x.png');\r\n    }\r\n\r\n    .invite-icon.share {\r\n        background-image: url('/img/share_icon@2x.png');\r\n    }\r\n}", ""]);
 
 // exports
 

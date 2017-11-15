@@ -6,7 +6,7 @@ const openAppButton = (apiUri = APP_URL, buttonText = 'Okay') => {
         title: buttonText,
         url: apiUri,
         messenger_extensions: true,
-        webview_height_ratio: 'compact'
+        webview_height_ratio: 'tall'
     }
 }
 
@@ -62,7 +62,10 @@ const shareMessage = (apiUri, title, imageUrl) => {
                         type: 'web_url',
                         url: apiUri,
                         messenger_extensions: true
-                    }
+                    },
+                    buttons: [
+                        openAppButton()
+                    ]
                 }]
             }
         }
