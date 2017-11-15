@@ -62,10 +62,7 @@ const shareMessage = (apiUri, title, imageUrl) => {
                         type: 'web_url',
                         url: apiUri,
                         messenger_extensions: true
-                    },
-                    buttons: [
-                        openAppButton()
-                    ]
+                    }
                 }]
             }
         }
