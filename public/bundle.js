@@ -21625,7 +21625,7 @@ var shareMessage = function shareMessage(apiUri, title, imageUrl) {
                         url: apiUri,
                         messenger_extensions: true
                     },
-                    buttons: [openAppButton()]
+                    buttons: [openAppButton(apiUri)]
                 }]
             }
         }
