@@ -976,7 +976,8 @@ __webpack_require__(36);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 window.attachApp = function (viewerId, threadType) {
-    var apiUri = 'https://' + window.location.hostname;
+    var apiUri = window.location.protocol + '//' + window.location.hostname;
+    console.log(apiUri);
     var app = void 0;
     if (viewerId) {
         app = _react2.default.createElement(_app2.default, {
@@ -21602,7 +21603,7 @@ var openAppMessage = function openAppMessage() {
             type: 'template',
             payload: {
                 template_type: 'button',
-                text: 'Let\'s try opening the web view',
+                text: 'Try clicking on this',
                 buttons: [openAppButton()]
             }
         }
@@ -21618,7 +21619,7 @@ var shareMessage = function shareMessage(apiUri, title, imageUrl) {
                 elements: [{
                     title: title,
                     image_url: imageUrl,
-                    subtitle: 'I just flipped a coin for ya!',
+                    subtitle: 'Just flipped a coin for ya',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,

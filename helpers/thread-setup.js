@@ -25,7 +25,7 @@ const setHomeUrl = () => {
         url: APP_URL,
         webview_height_ratio: 'tall',
         webview_share_button: 'hide',
-        in_test: true
+        in_test: false
     })
 }
 

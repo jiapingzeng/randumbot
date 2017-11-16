@@ -6,14 +6,15 @@ import App from "./app.jsx"
 import '../public/style.css'
 
 window.attachApp = (viewerId, threadType) => {
-    const apiUri = `https://${window.location.hostname}`
+    const apiUri = `${window.location.protocol}//${window.location.hostname}`
+    console.log(apiUri)
     let app
     if (viewerId) {
         app = (
             <App
-              viewerId={viewerId}
-              apiUri={apiUri}
-              threadType={threadType}
+                viewerId={viewerId}
+                apiUri={apiUri}
+                threadType={threadType}
             />
         )
     } else {

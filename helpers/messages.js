@@ -39,7 +39,7 @@ const openAppMessage = () => {
             type: 'template',
             payload: {
                 template_type: 'button',
-                text: 'Let\'s try opening the web view',
+                text: 'Try clicking on this',
                 buttons: [
                     openAppButton()
                 ]
@@ -57,12 +57,15 @@ const shareMessage = (apiUri, title, imageUrl) => {
                 elements: [{
                     title: title,
                     image_url: imageUrl,
-                    subtitle: 'I just flipped a coin for ya!',
+                    subtitle: 'Just flipped a coin for ya',
                     default_action: {
                         type: 'web_url',
                         url: apiUri,
                         messenger_extensions: true
-                    }
+                    },
+                    buttons: [
+                        openAppButton(apiUri)
+                    ]
                 }]
             }
         }
