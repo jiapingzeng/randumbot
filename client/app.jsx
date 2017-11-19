@@ -66,7 +66,7 @@ export default class App extends React.Component {
                 buttonText={buttonText}
             />
         )
-        let coinWidth = window.innerWidth * 0.5
+        let coinWidth = window.innerWidth > 720 ? 360 : window.innerWidth * 0.5
         return (
             <div id='app'>
                 <br />

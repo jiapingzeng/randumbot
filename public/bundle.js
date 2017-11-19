@@ -21305,7 +21305,7 @@ var App = function (_React$Component) {
                 sharingMode: sharingMode,
                 buttonText: buttonText
             });
-            var coinWidth = window.innerWidth * 0.5;
+            var coinWidth = window.innerWidth > 720 ? 360 : window.innerWidth * 0.5;
             return _react2.default.createElement(
                 'div',
                 { id: 'app' },
