@@ -16,7 +16,7 @@ const callAPI = (endPoint, messageDataArray, queryParams = {}, retries = 3) => {
     const query = Object.assign({ access_token: PAGE_ACCESS_TOKEN }, queryParams)
     const [messageToSend, ...queue] = castArray(messageDataArray)
     request({
-        uri: `https://graph.facebook.com/v2.10/me/${endPoint}`,
+        uri: `https://graph.facebook.com/v2.11/me/${endPoint}`,
         qs: query,
         method: 'POST',
         json: messageToSend
